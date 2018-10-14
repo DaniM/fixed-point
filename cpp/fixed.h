@@ -52,8 +52,10 @@ TO cast(const FROM& f)
 	}
 	else if( from_size < to_size )
 	{
+		// careful with losing the sign
 		const size_t diff = (to_size - from_size) << 2;
-		c.number = ( typename TO::type )( f.number << diff );
+		c.number = ( typename TO::type )( f.number );
+		c.number = c.number << diff;
 	}
 	else
 	{
